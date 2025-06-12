@@ -31,28 +31,32 @@ export default function KitchenDesigner() {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Kitchen Layout Tool</h2>
-      <div
-        className="relative border border-gray-400 bg-gray-50 shadow-md"
-        style={{ width: 850, height: 650, padding: 20 }}
-      >
+    <div style={{ padding: 16 }}>
+      <h2 style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 16 }}>Kitchen Layout Tool</h2>
+      <div style={{ position: 'relative', width: 850, height: 650, background: '#f8f8f8', border: '1px solid #ccc', padding: 20 }}>
         {walls.map(wall => (
           <div
             key={wall.id}
-            className="absolute text-center text-white text-xs bg-gray-700 flex items-center justify-center shadow"
             style={{
+              position: "absolute",
               left: wall.x,
               top: wall.y,
               width: wall.width,
-              height: wall.height
+              height: wall.height,
+              background: "#555",
+              color: "#fff",
+              fontSize: 10,
+              textAlign: "center",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column"
             }}
           >
             {`Wall ${wall.id}`}<br />
             {wall.width > wall.height ? `${wall.width}"` : `${wall.height}"`}
           </div>
         ))}
-
         {items.map(item => (
           <Rnd
             key={item.id}
@@ -62,7 +66,17 @@ export default function KitchenDesigner() {
             onResizeStop={(e, dir, ref, delta, pos) => handleResizeStop(e, dir, ref, delta, pos, item.id)}
             bounds="parent"
           >
-            <div className="border border-blue-600 bg-blue-100 h-full w-full flex items-center justify-center font-semibold shadow-md cursor-move">
+            <div style={{
+              height: "100%",
+              width: "100%",
+              background: "#e0ecff",
+              border: "1px solid #339",
+              fontWeight: "bold",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "move"
+            }}>
               {item.label}
             </div>
           </Rnd>
